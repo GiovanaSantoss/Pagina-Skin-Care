@@ -10,7 +10,7 @@ body {
   background-color: black;
   color: #fff;
   font-size: 16px;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 header {
@@ -29,24 +29,46 @@ header {
   }
 
   & nav {
+
+    position: relative;
+
     & ul {
       display: grid;
       grid-template-columns: repeat(3, 200px);
       color: #000;
 
       & li {
-        & a {
-          text-decoration: none;
-          color: #000;
+        position: relative;
 
-          &:hover{
-            color:#fffcfc;
+        & .submenu{
+          display: none;
+          position: absolute;
+          top: 100%; /* Aparece logo abaixo do item pai */
+          left: 0;
+          background-color: #fff;
+          padding: 10px 0;
+          border-radius: 5px;
+          min-width: 200px;
+          z-index: 99;
+
+          & li{
+            padding: 10px 20px;
+
+            & a{
+              color: #000;
+              text-decoration: none;
+            }
+
+            &:hover .submenu{
+              display: block;
+            }
           }
+        }
         }
       }
     }
   }
-}
+
 
 section {
   background-image: radial-gradient(#fca7e7, #fd59fd);
@@ -119,19 +141,6 @@ section {
         max-width: 450px;
       }
 
-      & .information {
-        border-radius: 15px;
-        height: 35px;
-        width: 120px;
-        text-transform: uppercase;
-        border: 2px solid #35162d;
-        background-color: rgb(238, 197, 240);
-        color: black;
-        cursor: pointer;
-        font-weight: bold;
-        font-family: "League Gothic", sans-serif;
-        text-decoration: none;
-      }
     }
 
     &::before {
@@ -230,7 +239,7 @@ section {
       }
 
       & .content {
-        & .car-information,
+        & .guacha-information,
         h2,
         .description,
         .information {
@@ -266,7 +275,7 @@ section {
       }
 
       & .content {
-        & .car-information,
+        & .guacha-information,
         h2,
         .description,
         .information {
@@ -276,4 +285,29 @@ section {
       }
     }
   }
+}
+
+@media (max-width: 768px) {
+  header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .content {
+    align-items: center;
+    text-align: center;
+    right: 0;
+    width: 90%;
+  }
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.produtos-menu:hover .submenu {
+  display: block;
 }
